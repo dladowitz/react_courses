@@ -20,6 +20,7 @@ class BookList extends Component {
   }
 
   render() {
+    console.log("props: ", this.props);
     return (
       <ul className="list-group col-sm-4">
         {this.renderList()}
@@ -35,7 +36,8 @@ class BookList extends Component {
 // If redux state ever changes entire container is rerendered
 function mapStateToProps(state) {
   return {
-    books: state.books
+    books: state.books,
+    activeBook: state.activeBook
   };
 }
 
