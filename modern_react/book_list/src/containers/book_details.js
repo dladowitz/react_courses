@@ -2,30 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class BookDetails extends Component {
-  bookInfo(attribute) {
-    if (this.props.book) {
-      if (attribute === 'title') {
-        return this.props.book.title;
-      }
-
-      return this.props.book.pages;
-    }
-
-    if (attribute === 'title') {
-      return 'Young Frankenstein';
-    }
-    return 101;
-  }
-
-  bookPageNum() {
-
-  }
-
   render() {
+    if (!this.props.book) {
+      return (
+        <div>
+          <h3> Book Details </h3>
+          <div>Select a book for more info</div>
+        </div>
+      );
+    }
+
     return (
       <div>
-        <div>Title: {this.bookInfo('title')}</div>
-        <div>Pages: {this.bookInfo('pageNum')}</div>
+        <h3> Book Details </h3>
+        <div>Title: {this.props.book.title}</div>
+        <div>Pages: {this.props.book.pages}</div>
       </div>
     );
   }

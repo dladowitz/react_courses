@@ -22,7 +22,7 @@ class BookList extends Component {
   render() {
     console.log("props: ", this.props);
     return (
-      <ul className="list-group col-sm-4">
+      <ul className="list-group col-sm-6">
         {this.renderList()}
       </ul>
     );
