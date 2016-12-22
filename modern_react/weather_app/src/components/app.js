@@ -4,10 +4,10 @@ import SearchBar from './../containers/search_bar.js';
 
 export default class App extends Component {
 
-  render() {    
+  render() {
     return (
       <div>
-        <div>React simple starter</div>
+        <div>Weather App</div>
         <SearchBar />
       </div>
     );

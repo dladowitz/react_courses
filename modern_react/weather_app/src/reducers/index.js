@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import SearchReducer from './reducer_search.js';
+import CityForecastReducer from './reducer_city_forecast.js';
 
 const rootReducer = combineReducers({
-  search: SearchReducer
+  citiesData: CityForecastReducer
 });
 
+// console.log('rootReducer: ', CityForecastReducer;
 export default rootReducer;

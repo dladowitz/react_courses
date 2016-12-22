@@ -2,33 +2,52 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { updateSearch } from '../actions/index.js';
+import { getForecast } from '../actions/index.js';
 
 
 class SearchBar extends Component {
-  render() {
-    console.log('SearchBar props: ', this.props);
+  constructor(props) {
+    super(props);
 
+    this.state = { term: '' };
+  }
+
+  onInputChange(event) {
+    this.setState({ term: event.target.value });
+  }
+
+  onFormSubmit(event) {
+    event.preventDefault();
+    this.props.getForecast(this.state.term);
+  }
+
+  render() {
+    // console.log('SearchBar props: ', this.props);
+    // console.log('SearchBar state: ', this.state);
     return (
-      <div>
+      <form className="input-group" onSubmit={this.onFormSubmit.bind(this)}>
         <input
-          value={this.props.term}
-          onChange={(event) => this.props.updateSearch(event.target.value)}
+          placeholder='Get a city forecast'
+          value={this.state.term}
+          onChange={this.onInputChange.bind(this)}
+          className='form-control'
         />
-      </div>
+        <span className="input-group-btn">
+          <button
+            type="submit"
+            className="btn btn-secondary"
+
+          >Submit</button>
+        </span>
+      </form>
     );
   }
 }
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ updateSearch: updateSearch }, dispatch);
+  return bindActionCreators({ getForecast: getForecast }, dispatch);
 }
 
-function mapStateToProps(state) {
-  return {
-    term: state.term
-  };
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default connect(null, mapDispatchToProps)(SearchBar);
