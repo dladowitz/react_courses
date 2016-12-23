@@ -1,0 +1,19 @@
+.app-title {
+  font-size: 1.5em;
+  margin-top: 20px;
+  color: darkcyan;
+  font-weight: 700;
+}
+
+.input-group {
+  margin: 20px 0px;
+}
+
+td, th {
+  vertical-align: middle !important;
+}
+
+td:first-of-type {
+  height: 200px;
+  width: 250px;
+}
