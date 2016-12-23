@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import SearchBar from './../containers/search_bar.js';
+import SearchBar from '../containers/search_bar.js';
+import WeatherList from '../containers/weather_list.js';
 
 export default class App extends Component {
 
@@ -9,6 +10,7 @@ export default class App extends Component {
       <div>
         <div>Weather App</div>
         <SearchBar />
+        <WeatherList />
       </div>
     );
   }

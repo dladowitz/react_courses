@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import CityForecastReducer from './reducer_city_forecast.js';
+import WeatherReducer from './reducer_weather.js';
 
 const rootReducer = combineReducers({
-  citiesData: CityForecastReducer
+  weather: WeatherReducer
 });
 
 // console.log('rootReducer: ', CityForecastReducer;
