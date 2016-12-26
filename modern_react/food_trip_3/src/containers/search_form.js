@@ -12,10 +12,12 @@ class SearchForm extends Component {
   onSubmit(props) {
     console.log('Sumbitting Form');
     console.log('Form Props: ', props);
-    this.props.findRoute();
+    this.props.findRoute(props);
   }
 
   render() {
+    console.log('search form props: ', this.props.route);
+
     const { fields: { start, destination }, handleSubmit } = this.props;
 
     return (
@@ -57,9 +59,14 @@ function validate(values) {
   return errors;
 }
 
+function mapStateToProps(state) {
+  return {
+    route: state.route
+  };
+}
 // takes the place of connect, but with three arguments
 export default reduxForm(
-  { form: 'StartDestinationForm', fields: ['start', 'destination'], validate },
-  null,
+  { form: 'SearchForm', fields: ['start', 'destination'], validate },
+  mapStateToProps,
   { findRoute }
 )(SearchForm);

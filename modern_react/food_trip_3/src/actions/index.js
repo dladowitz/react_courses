@@ -1,5 +1,11 @@
-export function findRoute() {
-  console.log('Action creator running: findRoute');
+export const FIND_ROUTE = 'FIND_ROUTE'
 
-  return {};
+export function findRoute(props) {
+  // console.log('Action creator running: findRoute - props: ', props);
+
+
+  return {
+    type: FIND_ROUTE,
+    payload: props
+  };
 }
