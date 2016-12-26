@@ -18,11 +18,12 @@ class LocationsList extends Component {
     document.body.appendChild(script);
   }
 
+
   renderLocations() {
     if (this.props.route.locations && this.props.route.locations.length > 0) {
       return this.props.route.locations.map((location) => {
         return (
-          <li className='list-group-item'>{location}</li>
+          <li key={location} className='list-group-item'>{location}</li>
         );
       });
     }

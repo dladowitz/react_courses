@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { Link } from 'react-router';
 
-import { findRoute } from '../actions/index.js';
+import { fetchDirections } from '../actions/index.js';
 
 class SearchForm extends Component {
   static contextTypes = {
@@ -10,15 +10,13 @@ class SearchForm extends Component {
   };
 
   onSubmit(props) {
-    console.log('Sumbitting Form');
-    console.log('Form Props: ', props);
-    this.props.findRoute(props)
+    console.log('Sumbitting Form with Props: ', props);
+    this.props.fetchDirections(props)
     // this.props.resetForm();
   }
 
   render() {
-    console.log('search form props: ', this.props);
-
+    // console.log('search form props: ', this.props);
     const { fields: { start, destination, end }, handleSubmit } = this.props;
 
     return (
@@ -69,5 +67,5 @@ function mapStateToProps(state) {
 export default reduxForm(
   { form: 'SearchForm', fields: ['start', 'destination'], validate },
   mapStateToProps,
-  { findRoute }
+  { fetchDirections }
 )(SearchForm);
