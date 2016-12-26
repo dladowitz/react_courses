@@ -13,13 +13,11 @@ class SearchForm extends Component {
     console.log('Sumbitting Form');
     console.log('Form Props: ', props);
     this.props.findRoute(props)
-    // .then(() => {
-    this.props.resetForm();
-    // });
+    // this.props.resetForm();
   }
 
   render() {
-    console.log('search form props: ', this.props.route);
+    console.log('search form props: ', this.props);
 
     const { fields: { start, destination, end }, handleSubmit } = this.props;
 
@@ -44,7 +42,7 @@ class SearchForm extends Component {
         </div>
 
         <button type="submit" className="btn btn-primary">Search</button>
-        <Link to="/" className="btn btn-danger">Cancel</Link>
+        <Link to="/" className="btn btn-danger m-l-10">Cancel</Link>
       </form>
     );
   }
