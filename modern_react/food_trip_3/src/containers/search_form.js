@@ -12,13 +12,16 @@ class SearchForm extends Component {
   onSubmit(props) {
     console.log('Sumbitting Form');
     console.log('Form Props: ', props);
-    this.props.findRoute(props);
+    this.props.findRoute(props)
+    // .then(() => {
+    this.props.resetForm();
+    // });
   }
 
   render() {
     console.log('search form props: ', this.props.route);
 
-    const { fields: { start, destination }, handleSubmit } = this.props;
+    const { fields: { start, destination, end }, handleSubmit } = this.props;
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -34,7 +37,7 @@ class SearchForm extends Component {
 
         <div className={`form-group ${destination.touched && destination.invalid ? 'has-danger' : ''}`}>
           <label>Destination</label>
-          <textarea type="text" className="form-control" {...destination} />
+          <input type="text" className="form-control" {...destination} />
           <div className="text-help">
             {destination.touched ? destination.error : ''}
           </div>
