@@ -1,9 +1,10 @@
-import { FIND_ROUTE, GET_LOCATIONS } from '../actions/index.js';
+import { GET_DIRECTIONS, GET_LOCATIONS } from '../actions/index.js';
 
 export default function (state = {}, action) {
   switch (action.type) {
-  case FIND_ROUTE:
-    return { ...state, start: action.payload.start, destination: action.payload.destination };
+  case GET_DIRECTIONS:
+    console.log('GET_DIRECTIONS reducer side action payload: ', action.payload);
+    return { ...state, steps: action.payload };
   case GET_LOCATIONS:
       return { ...state, locations: action.payload };
   default:

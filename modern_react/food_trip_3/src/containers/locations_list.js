@@ -1,29 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { GOOGLE_API_KEY } from '../../.env.js'
-import { getLocationsFromRoute } from '../actions/index.js';
 
 class LocationsList extends Component {
-  componentWillMount() {
-    this.props.getLocationsFromRoute();
-    this.addGoogleMapsScript();
-  }
-
-  addGoogleMapsScript() {
-    const script = document.createElement('script');
-
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}`;
-    script.async = true;
-    document.body.appendChild(script);
-  }
-
-
-  renderLocations() {
-    if (this.props.route.locations && this.props.route.locations.length > 0) {
-      return this.props.route.locations.map((location) => {
+  renderDirections() {
+    if (this.props.route.steps && this.props.route.steps.length > 0) {
+      return this.props.route.steps.map((step) => {
         return (
-          <li key={location} className='list-group-item'>{location}</li>
+          <li
+            key={step.start_location.lat()}
+            className='list-group-item'
+          >
+            {step.start_location.lat()}
+          </li>
         );
       });
     }
@@ -37,7 +26,7 @@ class LocationsList extends Component {
       <div className='locations-list-container'>
         <h4>Locations</h4>
         <ul className='list-group'>
-          {this.renderLocations()}
+          {this.renderDirections()}
         </ul>
       </div>
     );
@@ -50,4 +39,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { getLocationsFromRoute })(LocationsList);
+export default connect(mapStateToProps)(LocationsList);

@@ -1,5 +1,4 @@
-export const FIND_ROUTE = 'FIND_ROUTE';
-export const GET_LOCATIONS = 'GET_LOCATIONS';
+export const GET_DIRECTIONS = 'GET_DIRECTIONS';
 
 function createRequestParams(props) {
   return {
@@ -15,37 +14,34 @@ function createRequestParams(props) {
   };
 }
 
-function getDirectionsFromGoogle(props) {
-  const directionsService = new google.maps.DirectionsService();
-  const requestParams = createRequestParams(props);
-  console.log('requestParams', requestParams);
-  directionsService.route(requestParams, (response, status) => {
-    console.log('Returning from directionsService');
-    if (status === 'OK') {
-      console.log('success: ', response.routes[0].legs[0].steps)
-      return response.routes[0].legs[0].steps
-      // this.setState({ steps: response.routes[0].legs[0].steps });
-    } else {
-      console.log('directionsService Error: ', response);
-    }
-  });
-}
+function getDirectionsFromGooglePromise(props) {
+  const promise = new Promise((resolve, reject) => {
+    const directionsService = new google.maps.DirectionsService();
+    const requestParams = createRequestParams(props);
 
+    setTimeout(function() {
+      directionsService.route(requestParams, (response, status) => {
+        if (status === 'OK') {
+          console.log('directionsService success: ', response.routes[0].legs[0].steps);
+          resolve(response.routes[0].legs[0].steps);
+        } else {
+          console.log('directionsService Error: ', response);
+          reject(response);
+        }
+      });
+    }, 10000);
+  });
+
+  return promise;
+}
 
 export function fetchDirections(props) {
-  // console.log('Action creator running: findRoute - props: ', props);
-  const directionSteps = getDirectionsFromGoogle(props);
+  // Looks like this promise is being run before sending to middleware.
+  const directionsPromise = getDirectionsFromGooglePromise(props);
+  console.log('GET_DIRECTIONS promise before sending: ', directionsPromise);
 
   return {
-    type: FIND_ROUTE,
-    payload: { start: props.start, destination: props.destination, steps: directionSteps }
-  };
-}
-
-export function getLocationsFromRoute() {
-  return {
-    type: GET_LOCATIONS,
-    // payload: []
-    payload: ['Place One', 'Place Two', 'Place Three']
+    type: GET_DIRECTIONS,
+    payload: directionsPromise
   };
 }

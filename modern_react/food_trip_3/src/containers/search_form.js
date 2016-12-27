@@ -3,6 +3,7 @@ import { reduxForm } from 'redux-form';
 import { Link } from 'react-router';
 
 import { fetchDirections } from '../actions/index.js';
+import { GOOGLE_API_KEY } from '../../.env.js'
 
 class SearchForm extends Component {
   static contextTypes = {
@@ -15,8 +16,20 @@ class SearchForm extends Component {
     // this.props.resetForm();
   }
 
+  componentWillMount() {
+    this.addGoogleMapsScript();
+  }
+
+  addGoogleMapsScript() {
+    const script = document.createElement('script');
+
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}`;
+    script.async = true;
+    document.body.appendChild(script);
+  }
+
   render() {
-    // console.log('search form props: ', this.props);
+    console.log('search form props: ', this.props);
     const { fields: { start, destination, end }, handleSubmit } = this.props;
 
     return (
