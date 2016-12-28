@@ -1,3 +1,5 @@
+// http://stackoverflow.com/questions/17283826/how-to-to-get-places-e-g-gas-stations-along-route-between-origin-and-destinati
+
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { Link } from 'react-router';
@@ -23,7 +25,7 @@ class SearchForm extends Component {
   addGoogleMapsScript() {
     const script = document.createElement('script');
 
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=places`;
     script.async = true;
     document.body.appendChild(script);
   }

@@ -19,24 +19,24 @@ function getDirectionsFromGooglePromise(props) {
     const directionsService = new google.maps.DirectionsService();
     const requestParams = createRequestParams(props);
 
-    setTimeout(function() {
-      directionsService.route(requestParams, (response, status) => {
-        if (status === 'OK') {
-          console.log('directionsService success: ', response.routes[0].legs[0].steps);
-          resolve(response.routes[0].legs[0].steps);
-        } else {
-          console.log('directionsService Error: ', response);
-          reject(response);
-        }
-      });
-    }, 10000);
+    directionsService.route(requestParams, (response, status) => {
+      if (status === 'OK') {
+        console.log('directionsService success: ', response.routes[0].legs[0].steps);
+        resolve(response.routes[0].legs[0].steps);
+      } else {
+        console.log('directionsService Error: ', response);
+        reject(response);
+      }
+    });
   });
 
   return promise;
 }
 
 export function fetchDirections(props) {
-  // Looks like this promise is being run before sending to middleware.
+  // Not sure exactly when the promise runs. Possibly before going to middleware.
+  // Possibly middleware just runs if the promise hasn't been resolved or rejected yet.
+  // And passes on if it's already been returned
   const directionsPromise = getDirectionsFromGooglePromise(props);
   console.log('GET_DIRECTIONS promise before sending: ', directionsPromise);
 
