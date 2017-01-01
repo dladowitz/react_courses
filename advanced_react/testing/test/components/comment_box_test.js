@@ -12,4 +12,9 @@ describe('CommentBox', () => {
     const component = renderComponent(CommentBox);
     expect(component.find('button')).to.exist;
   });
+
+  it('has a top level class name', () => {
+    const component = renderComponent(CommentBox);
+    expect(component).to.have.class('comment-box');
+  })
 });
