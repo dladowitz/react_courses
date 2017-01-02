@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class GMap extends Component {
   componentDidMount() {
@@ -66,6 +67,7 @@ class GMap extends Component {
   }
 
   render() {
+    console.log('GMap render steps: ', this.props)
     return (
       <div className='map-container'>
         <h4>Route Map</h4>
@@ -75,4 +77,8 @@ class GMap extends Component {
   }
 }
 
-export default GMap;
+function mapStateToProps(state) {
+  return { steps: state.route.steps };
+}
+
+export default connect(mapStateToProps)(GMap);
