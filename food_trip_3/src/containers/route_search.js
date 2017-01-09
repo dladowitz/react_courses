@@ -7,8 +7,8 @@ const RouteSearch = () => {
   return (
     <div>
       <SearchForm />
-      <LocationsList />
       <Gmap />
+      <LocationsList />
     </div>
   );
 };

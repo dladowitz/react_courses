@@ -13,7 +13,7 @@ class SearchForm extends Component {
   };
 
   onSubmit(props) {
-    console.log('Sumbitting Form with Props: ', props);
+    // console.log('Sumbitting Form with Props: ', props);
     this.props.fetchDirections(props)
     // this.props.resetForm();
   }
@@ -31,7 +31,7 @@ class SearchForm extends Component {
   }
 
   render() {
-    console.log('search form props: ', this.props);
+    // console.log('search form props: ', this.props);
     const { fields: { start, destination, end }, handleSubmit } = this.props;
 
     return (

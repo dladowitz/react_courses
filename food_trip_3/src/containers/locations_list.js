@@ -21,7 +21,7 @@ class LocationsList extends Component {
   }
 
   render() {
-    console.log('Locations List Props: ', this.props);
+    // console.log('Locations List Props: ', this.props);
     return (
       <div className='locations-list-container'>
         <h4>Locations</h4>
