@@ -18,5 +18,19 @@ describe('CommentBox', () => {
 
   it('has a top level class name', () => {
     expect(component).to.have.class('comment-box');
-  })
+  });
+
+  describe('enterering some text', () => {
+    beforeEach(() => {
+      component.find('textarea').simulate('change', 'new comment');
+    });
+
+    it('shows text that is entered', () => {
+
+    });
+
+    it('when submitted, clears text', () => {
+
+    });
+  });
 });
