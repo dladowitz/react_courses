@@ -26,11 +26,12 @@ describe('CommentBox', () => {
     });
 
     it('shows text that is entered', () => {
-
+      expect(component.find('textarea')).to.have.value('new comment');
     });
 
     it('when submitted, clears text', () => {
-
+      component.simulate('submit');
+      expect(component.find('textarea')).to.have.value('');
     });
   });
 });
