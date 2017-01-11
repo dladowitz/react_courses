@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import CommentBox from './comment_box.js';
+import CommentList from './comment_list.js';
 
 export default class App extends Component {
   render() {
@@ -8,6 +9,7 @@ export default class App extends Component {
       <div>
         <div>React simple starter</div>
         <CommentBox />
+        <CommentList />
       </div>
     );
   }

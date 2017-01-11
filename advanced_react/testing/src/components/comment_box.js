@@ -29,7 +29,7 @@ class CommentBox extends Component {
           onChange={(event) => this.setState({ comment: event.target.value })}
         />
 
-        <button>Save</button>
+        <button action="submit">Save</button>
       </form>
     );
   }
