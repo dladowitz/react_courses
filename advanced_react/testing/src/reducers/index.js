@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  comments: (state = ['thing one', 'thing two']) => state
 });
 
 export default rootReducer;
